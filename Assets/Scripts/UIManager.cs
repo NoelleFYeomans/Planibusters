@@ -6,6 +6,20 @@ public class UIManager : MonoBehaviour
 {
     int currentSceneIndex; //used for storing the index value of the scene
 
+    //all the actual canvas objects (may shrink)
+    public Canvas titlescreenUI;
+    public Canvas gameplayUI;
+    public Canvas gameplayTutorialUI;
+    public Canvas optionsUI;
+    public Canvas pauseUI;
+    public Canvas winUI;
+    public Canvas victoryUI;
+    public Canvas loseUI;
+    public Canvas creditsUI;
+    public Canvas shopUI;
+    public Canvas clearSaveUI;
+
+
     //enum for all possible UI/Screens/Menus/whatevers
     public enum UIState
     {
@@ -24,7 +38,7 @@ public class UIManager : MonoBehaviour
 
     //SCENES INDEX VALUE
     //Titlescreen = 0
-    //ManagerSceneAdditive = 1 //Exists as a place where the Singleton & Managers will originate.
+    //ManagerSceneAdditive = 1 //Exists as a place where the Singleton & Managers will originate... maybe
     //ForestLevel = 2
     //MountainLevel = 3
     //FrozenLevel = 4
@@ -46,5 +60,22 @@ public class UIManager : MonoBehaviour
         currentSceneIndex = sceneIndex; //I now have the scene index and can use this value to load the UI of the relevent scene?
     }
 
-    //do I make actual UI objects in Unity, or code UI? Decide soonish~
+    public void titlescreenActive() //I don't want a bajillion methods that do this, how can I condense?
+    {
+        titlescreenUI.gameObject.SetActive(true);
+        gameplayUI.gameObject.SetActive(false);
+        gameplayTutorialUI.gameObject.SetActive(false);
+        optionsUI.gameObject.SetActive(false);
+        pauseUI.gameObject.SetActive(false);
+        winUI.gameObject.SetActive(false);
+        victoryUI.gameObject.SetActive(false);
+        loseUI.gameObject.SetActive(false);
+        creditsUI.gameObject.SetActive(false);
+        shopUI.gameObject.SetActive(false);
+        clearSaveUI.gameObject.SetActive(false);
+
+        Cursor.visible = true; //the cursor wants to be visible since the menu is navigated by mouse/mouse1
+}
+
+    //I wanted to use OnGUI stuff, but ultimately those buttons are a little annoying to work with atm.
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour //consider a debug menu
 {
     //where unity references to other managers are passed in
     public GameObject LevelManager;
@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
         Other //use TBD
     }
 
+    private GameState _gameState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,23 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //I have 6 buttons + mouse 1. Should I put this in an inputManager? (I don't think I will)
+        switch (_gameState)
+        {
+            case GameState.Titlescreen:
+                //run any settings/code relevent to the titlescreen
+                break;
+            case GameState.Gameplay: 
+                //this is where inputs should be accepted //NOTE: do something about unity input manager
+                //how am I going to handle the multiple input styles?
+                break;
+            case GameState.Paused:
+                //this is for pause & potentially upgrade UIs?
+                break; 
+            case GameState.Other:
+                //no use yet, may be changed/removed
+                break;
+
+        }
 
     }
 }

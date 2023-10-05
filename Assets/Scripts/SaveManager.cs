@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : MonoBehaviour //pontially remove from unity and instantiate this code INTO the GameManager
 {
     public static SaveManager Instance; //Really, this should be called DataManager, but alas
 
@@ -73,7 +73,7 @@ public class SaveManager : MonoBehaviour
 }
 
 //class exists to be a place where I can serialize the data pertinent to the player's progression;
-[Serializable]
+[Serializable] //<<< poggers????
 class PlayerData
 {
     //this is where we put the various variables that will need to be tracked

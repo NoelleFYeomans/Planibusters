@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     int currentSceneIndex; //used for storing the index value of the scene
 
+    int sceneReturnIndex; //used for pause/options menu
+
     //all the actual canvas objects (may shrink)
     public Canvas titlescreenUI;
     public Canvas gameplayUI;
@@ -18,22 +20,23 @@ public class UIManager : MonoBehaviour
     public Canvas creditsUI;
     public Canvas shopUI;
     public Canvas clearSaveUI;
+    public GameObject deletionConfirmationUI;
 
     //enum for all possible UI/Screens/Menus/whatevers
-    public enum UIState
-    {
-        Titlescreen, //don't forget there needs to be a splash screen before title
-        Gameplay, //this is the UI that all 3 levels will use
-        GameplayTutorial, //tutorial UI/text may merge with gameplay?
-        Options, //for options, access from TitleScreen
-        Pause, //for pausing midgame, same UI as options mostly, but with different buttons since midgame
-        Win, //Screen for completing a level
-        Victory, //UI/Screen for completing game
-        Lose, //for any level attempt that is unsuccessful
-        Credits, //accessed from titlescreen
-        Shop, //shop UI/menu. consider another scene for this entirely?
-        ClearSave //screen/menu/prompts for clearing save data
-    }
+    //public enum UIState
+    //{
+    //    Titlescreen, //don't forget there needs to be a splash screen before title
+    //    Gameplay, //this is the UI that all 3 levels will use
+    //    GameplayTutorial, //tutorial UI/text may merge with gameplay?
+    //    Options, //for options, access from TitleScreen
+    //    Pause, //for pausing midgame, same UI as options mostly, but with different buttons since midgame
+    //    Win, //Screen for completing a level
+    //    Victory, //UI/Screen for completing game
+    //    Lose, //for any level attempt that is unsuccessful
+    //    Credits, //accessed from titlescreen
+    //    Shop, //shop UI/menu. consider another scene for this entirely?
+    //    ClearSave //screen/menu/prompts for clearing save data
+    //}
 
     //SCENES INDEX VALUE
     //Titlescreen = 0
@@ -43,9 +46,18 @@ public class UIManager : MonoBehaviour
     //FrozenLevel = 4
 
     // Start is called before the first frame update
+
+    public enum returnUI
+    {
+        Titlescreen,
+        Gameplay
+    }
+
+    returnUI returnToUI; //what does this do on load?
+
     void Start()
     {
-        
+        returnToUI = returnUI.Titlescreen; //so this is set on launch
     }
 
     // Update is called once per frame
@@ -65,6 +77,8 @@ public class UIManager : MonoBehaviour
 
         titlescreenUI.gameObject.SetActive(true);
 
+        returnToUI = returnUI.Titlescreen;
+
         Cursor.visible = true; //the cursor wants to be visible since the menu is navigated by mouse/mouse1
     }
 
@@ -73,6 +87,8 @@ public class UIManager : MonoBehaviour
         disableAllUI();
 
         gameplayUI.gameObject.SetActive(true);
+
+        returnToUI = returnUI.Gameplay; //this needs to exist for Options to work properly
 
         Cursor.visible = false;
     }
@@ -86,18 +102,56 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void clearSaveActive()
+    {
+        disableAllUI();
+
+        clearSaveUI.gameObject.SetActive(true);
+
+        Cursor.visible = true;
+    }
+
+    public void optionsActive()
+    {
+        disableAllUI();
+
+        optionsUI.gameObject.SetActive(true);
+
+        
+
+        Cursor.visible = true;
+    }
+
+    public void confirmDeletion()
+    {
+        deletionConfirmationUI.SetActive(true);
+    }
+
+    public void returnToScene() //used specifically for the pause/options menu
+    {
+        if (returnToUI == returnUI.Titlescreen) 
+        {
+            titlescreenUIActive();
+        }
+        else if (returnToUI == returnUI.Gameplay)
+        {
+            gameplayUIActive();
+        }
+    }
+
     public void disableAllUI() //sets all UIs to inactive
     {
         titlescreenUI.gameObject.SetActive(false);
         gameplayUI.gameObject.SetActive(false);
-        //gameplayTutorialUI.gameObject.SetActive(false);
-        //optionsUI.gameObject.SetActive(false);
+        gameplayTutorialUI.gameObject.SetActive(false);
+        optionsUI.gameObject.SetActive(false);
         //pauseUI.gameObject.SetActive(false);
         //winUI.gameObject.SetActive(false);
         //victoryUI.gameObject.SetActive(false);
         //loseUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(false);
         shopUI.gameObject.SetActive(false);
-        //clearSaveUI.gameObject.SetActive(false);
+        clearSaveUI.gameObject.SetActive(false);
+        deletionConfirmationUI.SetActive(false);
     }
 }

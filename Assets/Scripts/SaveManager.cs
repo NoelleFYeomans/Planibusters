@@ -69,10 +69,11 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
     public void clearSave() //calling this method will delete all save data
     {
         //THERE NEEDS TO BE A WHOLE PROMPTS BEFORE THIS
-
+        Debug.Log("clear accessed");
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
             File.Delete(Application.persistentDataPath + "/playerInfo.dat"); //this should delete the save file
+            Debug.Log("clear performed");
         }
     }
 }

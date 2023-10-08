@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour //consider a debug menu
     public GameObject LevelManager;
     public GameObject UIManager;
     public GameObject ShopManager;
+    public GameObject AudioManager;
 
     //the empty objects where the referenced managers will be stored
     private LevelManager _levelManager;
     private UIManager _UIManager;
     private ShopManager _ShopManager;
     private SaveManager _SaveManager;
+    private AudioManager _AudioManager;
 
     //enums for what state the game is in
     public enum GameState //what do I *need* this for?
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour //consider a debug menu
         _UIManager = UIManager.GetComponent<UIManager>();
         _ShopManager = ShopManager.GetComponent<ShopManager>();
         _SaveManager = GetComponent<SaveManager>(); //this gets the SaveManager script off of GameManager object
+        _AudioManager = AudioManager.GetComponent<AudioManager>();
 
         _UIManager.getSceneIndex(_levelManager.returnSceneIndex()); //this feeds the index of the current scene to _UIManager without having to add SceneManager library to UIManager script
     }
@@ -61,4 +64,6 @@ public class GameManager : MonoBehaviour //consider a debug menu
         }
 
     }
+
+    //volume should be handled here?
 }

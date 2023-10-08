@@ -34,15 +34,20 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(0); //scene 0 IS the titlescreen
     }
 
-    public void loadManagerScene() //this method will load the scene containing all Managers... but where and how do I call this? perhaps I simply attach singleton to mainmenu and let it be
-    {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
-    }
+    //public void loadManagerScene() //this method will load the scene containing all Managers... but where and how do I call this? perhaps I simply attach singleton to mainmenu and let it be
+    //{
+    //    SceneManager.LoadScene(1, LoadSceneMode.Additive);
+    //}
 
-    public void loadScene(int sceneIndexValue) //perhaps feed in an int, use scene index to load?
+    //public void loadScene(int sceneIndexValue) //perhaps feed in an int, use scene index to load?
+    //{
+    //    if (sceneIndexValue == 1) return; //I do not want the game to EVER load into scene 1(the managerScene)
+    //    SceneManager.LoadScene(sceneIndexValue); //this will load in whatever scene the passed in Int is
+    //}
+
+    public void loadGameplay() //this should load whatever the saved level is later
     {
-        if (sceneIndexValue == 1) return; //I do not want the game to EVER load into scene 1(the managerScene)
-        SceneManager.LoadScene(sceneIndexValue); //this will load in whatever scene the passed in Int is
+        SceneManager.LoadScene(2); //this is level 1/forest level
     }
 
     public void quitGame() //exits game

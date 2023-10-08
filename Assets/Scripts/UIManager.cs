@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
     public Canvas shopUI;
     public Canvas clearSaveUI;
 
-
     //enum for all possible UI/Screens/Menus/whatevers
     public enum UIState
     {
@@ -60,22 +59,45 @@ public class UIManager : MonoBehaviour
         currentSceneIndex = sceneIndex; //I now have the scene index and can use this value to load the UI of the relevent scene?
     }
 
-    public void titlescreenActive() //I don't want a bajillion methods that do this, how can I condense?
+    public void titlescreenUIActive() //I don't want a bajillion methods that do this, how can I condense?
     {
+        disableAllUI();
+
         titlescreenUI.gameObject.SetActive(true);
-        gameplayUI.gameObject.SetActive(false);
-        gameplayTutorialUI.gameObject.SetActive(false);
-        optionsUI.gameObject.SetActive(false);
-        pauseUI.gameObject.SetActive(false);
-        winUI.gameObject.SetActive(false);
-        victoryUI.gameObject.SetActive(false);
-        loseUI.gameObject.SetActive(false);
-        creditsUI.gameObject.SetActive(false);
-        shopUI.gameObject.SetActive(false);
-        clearSaveUI.gameObject.SetActive(false);
 
         Cursor.visible = true; //the cursor wants to be visible since the menu is navigated by mouse/mouse1
-}
+    }
 
-    //I wanted to use OnGUI stuff, but ultimately those buttons are a little annoying to work with atm.
+    public void gameplayUIActive() //need to check for an existing save file
+    {
+        disableAllUI();
+
+        gameplayUI.gameObject.SetActive(true);
+
+        Cursor.visible = false;
+    }
+
+    public void creditsActive()
+    {
+        disableAllUI();
+
+        creditsUI.gameObject.SetActive(true);
+
+        Cursor.visible = true;
+    }
+
+    public void disableAllUI() //sets all UIs to inactive
+    {
+        titlescreenUI.gameObject.SetActive(false);
+        gameplayUI.gameObject.SetActive(false);
+        //gameplayTutorialUI.gameObject.SetActive(false);
+        //optionsUI.gameObject.SetActive(false);
+        //pauseUI.gameObject.SetActive(false);
+        //winUI.gameObject.SetActive(false);
+        //victoryUI.gameObject.SetActive(false);
+        //loseUI.gameObject.SetActive(false);
+        creditsUI.gameObject.SetActive(false);
+        shopUI.gameObject.SetActive(false);
+        //clearSaveUI.gameObject.SetActive(false);
+    }
 }

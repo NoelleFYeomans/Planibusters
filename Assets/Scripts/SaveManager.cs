@@ -68,7 +68,12 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
 
     public void clearSave() //calling this method will delete all save data
     {
-        
+        //THERE NEEDS TO BE A WHOLE PROMPTS BEFORE THIS
+
+        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        {
+            File.Delete(Application.persistentDataPath + "/playerInfo.dat"); //this should delete the save file
+        }
     }
 }
 
@@ -76,11 +81,17 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
 [Serializable] //<<< poggers????
 class PlayerData
 {
-    //this is where we put the various variables that will need to be tracked
+    //generic variables
     public float experience;
     public int level;
     public int attemptCount;
     public bool isTutorialComplete;
+
+    //single style variables
+
+    //rapid style variables
+
+    //kick style variables
 
 
 }

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    int currentSceneIndex; //used for storing the index value of the scene
-
-    int sceneReturnIndex; //used for pause/options menu
-
     //all the actual canvas objects (may shrink)
     public Canvas titlescreenUI;
     public Canvas gameplayUI;
@@ -63,11 +59,6 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         //should the UI be managed from the UI Manager's Update? surely?
-    }
-
-    public void getSceneIndex(int sceneIndex)
-    {
-        currentSceneIndex = sceneIndex; //I now have the scene index and can use this value to load the UI of the relevent scene?
     }
 
     public void titlescreenUIActive() //I don't want a bajillion methods that do this, how can I condense?

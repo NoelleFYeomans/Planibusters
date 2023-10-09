@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
         _SaveManager = GetComponent<SaveManager>(); //this gets the SaveManager script off of GameManager object
         _AudioManager = AudioManager.GetComponent<AudioManager>();
 
-        _UIManager.getSceneIndex(_levelManager.returnSceneIndex()); //this feeds the index of the current scene to _UIManager without having to add SceneManager library to UIManager script
+        _UIManager.titlescreenUIActive();
     }
 
     // Update is called once per frame
@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    _UIManager.optionsActive(); //this just works lmfaooooo
-                }
+        {
+            _UIManager.optionsActive(); //this just works lmfaooooo
+        }
 
         //I have 6 buttons + mouse 1. Should I put this in an inputManager? (I don't think I will)
         //switch (_gameState)

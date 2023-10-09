@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour //consider a debug menu
+public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
 {
     //where unity references to other managers are passed in
     public GameObject LevelManager;
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour //consider a debug menu
     private AudioManager _AudioManager;
 
     //enums for what state the game is in
-    public enum GameState //what do I *need* this for?
+    public enum GameState //What am i actually using these for tbh?
     {
         Titlescreen, //the game is on the titlescreen
         Gameplay, //the game is in the middle of gameplay
@@ -44,26 +44,32 @@ public class GameManager : MonoBehaviour //consider a debug menu
     // Update is called once per frame
     void Update()
     {
-        //I have 6 buttons + mouse 1. Should I put this in an inputManager? (I don't think I will)
-        switch (_gameState)
-        {
-            case GameState.Titlescreen:
-                //run any settings/code relevent to the titlescreen
-                break;
-            case GameState.Gameplay: 
-                //this is where inputs should be accepted //NOTE: do something about unity input manager
-                //how am I going to handle the multiple input styles?
-                break;
-            case GameState.Paused:
-                //this is for pause & potentially upgrade UIs?
-                break; 
-            case GameState.Other:
-                //no use yet, may be changed/removed
-                break;
 
-        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    _UIManager.optionsActive(); //this just works lmfaooooo
+                }
+
+        //I have 6 buttons + mouse 1. Should I put this in an inputManager? (I don't think I will)
+        //switch (_gameState)
+        //{
+        //    case GameState.Titlescreen:
+        //        //run any settings/code relevent to the titlescreen
+        //        break;
+        //    case GameState.Gameplay: 
+        //        if (Input.GetKeyDown(KeyCode.Escape))
+        //        {
+        //            _UIManager.optionsActive(); //this probably doesn't work fully yet
+        //        }
+        //        break;
+        //    case GameState.Paused:
+        //        //this is for pause & potentially upgrade UIs?
+        //        break; 
+        //    case GameState.Other:
+        //        //no use yet, may be changed/removed
+        //        break;
+
+        //}
 
     }
-
-    //volume should be handled here?
 }

@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     public Canvas gameplayUI;
     public Canvas gameplayTutorialUI;
     public Canvas optionsUI;
-    public Canvas pauseUI;
     public Canvas winUI;
     public Canvas victoryUI;
     public Canvas loseUI;
@@ -145,7 +144,6 @@ public class UIManager : MonoBehaviour
         gameplayUI.gameObject.SetActive(false);
         gameplayTutorialUI.gameObject.SetActive(false);
         optionsUI.gameObject.SetActive(false);
-        //pauseUI.gameObject.SetActive(false);
         //winUI.gameObject.SetActive(false);
         //victoryUI.gameObject.SetActive(false);
         //loseUI.gameObject.SetActive(false);

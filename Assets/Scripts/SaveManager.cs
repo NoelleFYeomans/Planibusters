@@ -73,7 +73,7 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
             File.Delete(Application.persistentDataPath + "/playerInfo.dat"); //this should delete the save file
-            Debug.Log("clear performed");
+            Debug.Log("clear performed"); //STILL NEEDS TO BE TESTED!!!!
         }
     }
 }

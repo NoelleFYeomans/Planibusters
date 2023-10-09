@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
+    [SerializeField] Slider volumeSlider; //this is for saving volume
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
         volumeSlider.value = PlayerPrefs.GetFloat("audioVolume");
     }
 
-    private void Save()
+    private void Save() //saved to PlayerPrefs because audio doesn't need to be protected
     {
         PlayerPrefs.SetFloat("audioVolume", volumeSlider.value);
     }

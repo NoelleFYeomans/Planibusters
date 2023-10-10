@@ -29,19 +29,24 @@ public class ScreenshakeScript : MonoBehaviour
         }
     }
 
+    public void startShaking()
+    {
+        start = true;
+    }
+
     IEnumerator Shaking()
     {
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = Camera.main.transform.position;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float strength = curve.Evaluate(elapsedTime / duration);
-            transform.position = startPosition + (Random.insideUnitSphere * strength);
+            Camera.main.transform.position = startPosition + (Random.insideUnitSphere * strength);
             yield return null;
         }
 
-        transform.position = startPosition;
+        Camera.main.transform.position = startPosition;
     }
 }

@@ -14,6 +14,12 @@ public class UIManager : MonoBehaviour
     public Canvas loseUI;
     public Canvas creditsUI;
     public Canvas shopUI;
+
+    //Sub-UIs of shop.
+    private GameObject singleUI;
+    private GameObject rapidUI;
+    private GameObject kickUI;
+
     public Canvas clearSaveUI;
     public GameObject deletionConfirmationUI;
 
@@ -53,6 +59,11 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         returnToUI = returnUI.Titlescreen; //so this is set on launch
+
+        //this may be changed later
+        singleUI = shopUI.transform.GetChild(3).gameObject;
+        rapidUI = shopUI.transform.GetChild(4).gameObject;
+        kickUI = shopUI.transform.GetChild(5).gameObject;
     }
 
     // Update is called once per frame
@@ -80,7 +91,7 @@ public class UIManager : MonoBehaviour
 
         returnToUI = returnUI.Gameplay; //this needs to exist for Options to work properly
 
-        Cursor.visible = false;
+        Cursor.visible = true; //this needs to be false later!
     }
 
     public void creditsActive()
@@ -107,7 +118,15 @@ public class UIManager : MonoBehaviour
 
         optionsUI.gameObject.SetActive(true);
 
-        
+        Cursor.visible = true;
+    }
+
+    public void shopActive()
+    {
+        disableAllUI();
+
+        shopUI.gameObject.SetActive(true);
+        singleUI.SetActive(true);
 
         Cursor.visible = true;
     }

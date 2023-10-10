@@ -50,8 +50,13 @@ public class ProgressBars : MonoBehaviour
         {
             isStopped = true;
             powerBar.gameObject.SetActive(false); //no longer need the power bar
-            //move onto accuracy
         }
+    }
+
+    public void enableBar()
+    {
+        isStopped = false;
+        powerBar.gameObject.SetActive(true);
     }
 
     //Camera.main.GetComponent<ScreenshakeScript>().start = true; //this will crash/not work if the camera doesn't have said script

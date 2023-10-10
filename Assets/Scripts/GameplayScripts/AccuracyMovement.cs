@@ -15,18 +15,35 @@ public class AccuracyMovement : MonoBehaviour
     private bool m_Invert = false;
     private float m_2PI = Mathf.PI * 2;
 
-    //private bool isClockwise = true;
+    public bool isMoving = true;
+
+    public GameObject targetCH;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Pivot = transform.position;
-        //isClockwise = true;
+        isMoving = true;
+    }
+
+    public void enableAccuracy()
+    {
+        isMoving = true;
+        targetCH.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update() //maybe work on inverted movement?
     {
+        if (Input.GetKeyDown(KeyCode.Space)) //setactive turns the attached script off
+        {
+            isMoving = false;
+            targetCH.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+
+        if (!isMoving) return; 
 
         m_PivotOffset = Vector3.right * 2 * m_XScale;
 
@@ -39,7 +56,7 @@ public class AccuracyMovement : MonoBehaviour
         if (m_Phase < 0) m_Phase += m_2PI;
 
         transform.position = m_Pivot + (m_Invert ? m_PivotOffset : Vector3.zero);
-        Vector3 tempVector3 = new Vector3((Mathf.Cos(m_Phase) * (m_Invert ? -1 : 1) * m_XScale), (Mathf.Sin(m_Phase) * m_YScale), 0); 
+        Vector3 tempVector3 = new Vector3((Mathf.Cos(m_Phase) * (m_Invert ? -1 : 1) * m_XScale), (Mathf.Sin(m_Phase) * m_YScale), 0);
         transform.position += tempVector3;
 
     } //original code kept just incase of emergencies below

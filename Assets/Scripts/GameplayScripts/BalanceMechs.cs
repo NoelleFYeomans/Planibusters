@@ -11,7 +11,7 @@ public class BalanceMechs : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //this will be the death of me
     {
         
     }

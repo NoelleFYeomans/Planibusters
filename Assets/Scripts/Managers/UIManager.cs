@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
         disableAllUI();
 
         shopUI.gameObject.SetActive(true);
-        singleUI.SetActive(true);
+        singleUI.SetActive(true); //this should set the current style active
 
         Cursor.visible = true;
     }

@@ -39,6 +39,8 @@ public class ProgressBars : MonoBehaviour
             powerMask.fillAmount -= (float)0.025;
             if (powerMask.fillAmount <= 0) isFilling = true;
         }
+
+        
     }
 
     // Update is called once per frame
@@ -46,10 +48,11 @@ public class ProgressBars : MonoBehaviour
     {
         if (!_UIManager.gameplayUI.isActiveAndEnabled) return; //only want this code to be active while the UI element is active
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && powerBar.gameObject.activeInHierarchy)
         {
             isStopped = true;
             powerBar.gameObject.SetActive(false); //no longer need the power bar
+            gameObject.GetComponent<AccuracyMovement>().enableAccuracy();
         }
     }
 
@@ -58,13 +61,4 @@ public class ProgressBars : MonoBehaviour
         isStopped = false;
         powerBar.gameObject.SetActive(true);
     }
-
-    //Camera.main.GetComponent<ScreenshakeScript>().start = true; //this will crash/not work if the camera doesn't have said script
-
-    //void getCurrentFill()
-    //{
-    //    float fillAmount = ((float)powerCurrent / (float)powerMax);
-    //    powerMask.fillAmount = fillAmount;
-    //}
-
 }

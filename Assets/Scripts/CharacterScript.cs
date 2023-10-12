@@ -15,4 +15,9 @@ public class CharacterScript : MonoBehaviour
     {
         
     }
+
+    private void FixedUpdate()
+    {
+        //gameObject.transform.RotateAround(Vector3.forward, Vector3.forward, 5); this rotates, but it's not right
+    }
 }

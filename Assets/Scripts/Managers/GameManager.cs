@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
         _SaveManager = GetComponent<SaveManager>(); //this gets the SaveManager script off of GameManager object
         _AudioManager = AudioManager.GetComponent<AudioManager>();
 
+        _SaveManager.loadSave();
+
         _UIManager.titlescreenUIActive();
     }
 

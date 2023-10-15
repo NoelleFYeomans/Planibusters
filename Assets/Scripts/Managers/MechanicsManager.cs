@@ -29,8 +29,9 @@ public class MechanicsManager : MonoBehaviour
 
         if (powerInputted == true && accuracyInputted == true) //&& balanceInputted == false && uniqueInputted == false
         {
-            //screenshake then to upgrade screen
-            Debug.Log("logma bugs");
+            //for time being play punch animation and screenshake
+            //then show results screen, increase attempt counter, increase experience
+            //then navigate from that screen to shop
         }
     }
 }

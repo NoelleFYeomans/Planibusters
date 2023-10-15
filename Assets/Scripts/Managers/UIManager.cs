@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     //all the actual canvas objects (may shrink)
     public Canvas titlescreenUI;
     public Canvas gameplayUI;
@@ -15,6 +18,8 @@ public class UIManager : MonoBehaviour
     public Canvas creditsUI;
     public Canvas shopUI;
 
+    public Canvas resultsUI;
+
     //Sub-UIs of shop.
     private GameObject singleUI;
     private GameObject rapidUI;
@@ -22,22 +27,6 @@ public class UIManager : MonoBehaviour
 
     public Canvas clearSaveUI;
     public GameObject deletionConfirmationUI;
-
-    //enum for all possible UI/Screens/Menus/whatevers
-    //public enum UIState
-    //{
-    //    Titlescreen, //don't forget there needs to be a splash screen before title
-    //    Gameplay, //this is the UI that all 3 levels will use
-    //    GameplayTutorial, //tutorial UI/text may merge with gameplay?
-    //    Options, //for options, access from TitleScreen
-    //    Pause, //for pausing midgame, same UI as options mostly, but with different buttons since midgame
-    //    Win, //Screen for completing a level
-    //    Victory, //UI/Screen for completing game
-    //    Lose, //for any level attempt that is unsuccessful
-    //    Credits, //accessed from titlescreen
-    //    Shop, //shop UI/menu. consider another scene for this entirely?
-    //    ClearSave //screen/menu/prompts for clearing save data
-    //}
 
     //SCENES INDEX VALUE
     //Titlescreen = 0
@@ -51,13 +40,24 @@ public class UIManager : MonoBehaviour
     public enum returnUI
     {
         Titlescreen,
-        Gameplay
+        Gameplay,
+        Shop
     }
 
     returnUI returnToUI; //what does this do on load?
 
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            // Handle duplicate instances, or take appropriate action.
+            Destroy(this.gameObject);
+        }
+
         returnToUI = returnUI.Titlescreen; //so this is set on launch
 
         //this may be changed later
@@ -94,6 +94,16 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true; //this needs to be false later!
     }
 
+    public void resultsUIActive()
+    {
+        disableAllUI();
+
+        gameplayUIActive();
+        resultsUI.gameObject.SetActive(true);
+
+        Cursor.visible = true;
+    }
+
     public void creditsActive()
     {
         disableAllUI();
@@ -114,7 +124,7 @@ public class UIManager : MonoBehaviour
 
     public void optionsActive()
     {
-        disableAllUI();
+        //disableAllUI();
 
         optionsUI.gameObject.SetActive(true);
 
@@ -126,6 +136,9 @@ public class UIManager : MonoBehaviour
         disableAllUI();
 
         shopUI.gameObject.SetActive(true);
+
+        returnToUI = returnUI.Shop;
+
         singleUI.SetActive(true); //this should set the current style active
 
         Cursor.visible = true;
@@ -146,6 +159,10 @@ public class UIManager : MonoBehaviour
         {
             gameplayUIActive();
         }
+        else if (returnToUI == returnUI.Shop)
+        {
+            shopActive();
+        }
     }
 
     public void disableAllUI() //sets all UIs to inactive
@@ -161,5 +178,7 @@ public class UIManager : MonoBehaviour
         shopUI.gameObject.SetActive(false);
         clearSaveUI.gameObject.SetActive(false);
         deletionConfirmationUI.SetActive(false);
+        resultsUI.gameObject.SetActive(false);
+
     }
 }

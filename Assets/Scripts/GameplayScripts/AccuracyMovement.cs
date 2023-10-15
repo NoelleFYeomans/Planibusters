@@ -17,6 +17,8 @@ public class AccuracyMovement : MonoBehaviour
 
     public bool isMoving = true;
 
+    private bool isActive = false;
+
     public GameObject targetCH;
     public GameObject movingCH;
 
@@ -43,14 +45,42 @@ public class AccuracyMovement : MonoBehaviour
         movingCH.gameObject.SetActive(false);
     }
 
+    public void calcAccuracy()
+    {
+        if (Vector2.Distance(movingCH.transform.position, targetCH.transform.position) > 1)
+        {
+            Debug.Log("Weak");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 1;
+        }
+        else if (Vector2.Distance(movingCH.transform.position, targetCH.transform.position) > 0.25)
+        {
+            Debug.Log("Med");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 2;
+        }
+        if (Vector2.Distance(movingCH.transform.position, targetCH.transform.position) <= 0.25)
+        {
+            Debug.Log("Strong");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 3;
+        }
+    }
+
     // Update is called once per frame
     void Update() //maybe work on inverted movement?
     {
-        if (Input.GetKeyDown(KeyCode.Space) && movingCH.gameObject.activeInHierarchy) //WHY DO YOU NOT WORK?????
+        if (Input.GetKeyDown(KeyCode.Space) && movingCH.gameObject.activeInHierarchy && isActive) //is made active on the same frame that space is pressed, making it inactive
         {
+            //take relevent info here
+            calcAccuracy();
             disableAccuracy();
+            GameObject.Find("MechanicsManager").GetComponent<MechanicsManager>().accuracyInputted = true;
+            GameObject.Find("Fist(placeholder)").GetComponent<punchScript>().punchFist();
+            
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().startShaking();
+            //determines experience formula?
             //gameObject.GetComponent<BalanceMechs>().enableBalance();
         }
+
+        isActive = (targetCH.gameObject.activeInHierarchy) ? true: false;
 
         if (!isMoving) return; 
 

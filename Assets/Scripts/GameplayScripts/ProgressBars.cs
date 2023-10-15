@@ -43,6 +43,26 @@ public class ProgressBars : MonoBehaviour
         
     }
 
+    private void calcPower()
+    {
+        if (powerMask.fillAmount < 0.5)
+        {
+            Debug.Log("lame");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 1;
+
+        }
+        else if (powerMask.fillAmount < 0.8)
+        {
+            Debug.Log("aight");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 2;
+        }
+        else if (powerMask.fillAmount >= 0.8)
+        {
+            Debug.Log("busted");
+            GameObject.Find("GameManager").GetComponent<ScreenshakeScript>().determineInt += 3;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -50,15 +70,24 @@ public class ProgressBars : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && powerBar.gameObject.activeInHierarchy)
         {
-            isStopped = true;
-            powerBar.gameObject.SetActive(false); //no longer need the power bar
+            //take relevent info here
+            calcPower();
+            disableBar();
+            GameObject.Find("MechanicsManager").GetComponent<MechanicsManager>().powerInputted = true;
             gameObject.GetComponent<AccuracyMovement>().enableAccuracy();
         }
+    }
+
+    public void disableBar()
+    {
+        isStopped = true;
+        powerBar.gameObject.SetActive(false);
     }
 
     public void enableBar()
     {
         isStopped = false;
         powerBar.gameObject.SetActive(true);
+        powerMask.fillAmount = 0;
     }
 }

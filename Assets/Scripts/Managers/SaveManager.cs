@@ -18,11 +18,26 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
     // Start is called before the first frame update
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            // Handle duplicate instances, or take appropriate action.
+            Destroy(this.gameObject);
+        }
+
         //inits values for gameplay, may need to be changed if start is *ever* called again (IE: loading a new scene calls this for some reason)
-        experience = 0;
-        level = 1;
-        attemptCount = 0;
-        isTutorialComplete = false;
+        //experience = 0;
+        //level = 1;
+        //attemptCount = 1;
+        //isTutorialComplete = false;
+    }
+
+    public void incrementAttempt()
+    {
+        attemptCount++;
     }
 
     // Update is called once per frame
@@ -68,7 +83,6 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
 
     public void clearSave() //calling this method will delete all save data
     {
-        //THERE NEEDS TO BE A WHOLE PROMPTS BEFORE THIS
         Debug.Log("clear accessed");
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {

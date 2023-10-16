@@ -12,9 +12,12 @@ public class ShopManager : MonoBehaviour
     public GameObject rapidStrikeUI;
     public GameObject kickUI;
 
+    //stats for each mechanics(might be listed in future)
     public int singlePower = 1, singleAccuracy = 1, singleBalance = 1, singleUnique = 1; //implemented
     public int rapidPower = 1, rapidAccuracy = 1, rapidBalance = 1, rapidUnique = 1; //might be removed
     public int kickPower = 1, kickAccuracy = 1, kickBalance = 1, kickUnique = 1;
+
+    public int spendableExperience; //experience that will be spent on upgrades
 
     enum Style
     {

@@ -1504,6 +1504,18 @@ MonoBehaviour:
   level: 0
   attemptCount: 0
   isTutorialComplete: 0
+  singlePower: 1
+  singleAccuracy: 1
+  singleBalance: 1
+  singleUnique: 1
+  rapidPower: 1
+  rapidAccuracy: 1
+  rapidBalance: 1
+  rapidUnique: 1
+  kickPower: 1
+  kickAccuracy: 1
+  kickBalance: 1
+  kickUnique: 1
 --- !u!114 &186092546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6483,6 +6495,18 @@ MonoBehaviour:
   singleStrikeUI: {fileID: 5036628}
   rapidStrikeUI: {fileID: 388957754}
   kickUI: {fileID: 680977621}
+  singlePower: 1
+  singleAccuracy: 1
+  singleBalance: 1
+  singleUnique: 1
+  rapidPower: 1
+  rapidAccuracy: 1
+  rapidBalance: 1
+  rapidUnique: 1
+  kickPower: 1
+  kickAccuracy: 1
+  kickBalance: 1
+  kickUnique: 1
 --- !u!1 &919695919
 GameObject:
   m_ObjectHideFlags: 0

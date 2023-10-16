@@ -39,8 +39,6 @@ public class ProgressBars : MonoBehaviour
             powerMask.fillAmount -= (float)0.025;
             if (powerMask.fillAmount <= 0) isFilling = true;
         }
-
-        
     }
 
     private void calcPower()
@@ -78,6 +76,7 @@ public class ProgressBars : MonoBehaviour
         }
     }
 
+    //possible refactor to UI
     public void disableBar()
     {
         isStopped = true;

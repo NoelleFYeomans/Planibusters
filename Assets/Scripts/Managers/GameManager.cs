@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
+public class GameManager : MonoBehaviour //High level TODO: Debug Menu, Refactor Code(Urgent)
 {
     //where unity references to other managers are passed in
     public GameObject LevelManager;

@@ -13,6 +13,11 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
     public int level;
     public int attemptCount;
     public bool isTutorialComplete;
+
+    public int singlePower = 1, singleAccuracy = 1, singleBalance = 1, singleUnique = 1; //implemented
+    public int rapidPower = 1, rapidAccuracy = 1, rapidBalance = 1, rapidUnique = 1; //might be removed
+    public int kickPower = 1, kickAccuracy = 1, kickBalance = 1, kickUnique = 1;
+
     //there should be a list/array of values that keep track of current upgrades?
 
     // Start is called before the first frame update
@@ -27,12 +32,6 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
             // Handle duplicate instances, or take appropriate action.
             Destroy(this.gameObject);
         }
-
-        //inits values for gameplay, may need to be changed if start is *ever* called again (IE: loading a new scene calls this for some reason)
-        //experience = 0;
-        //level = 1;
-        //attemptCount = 1;
-        //isTutorialComplete = false;
     }
 
     public void incrementAttempt()
@@ -58,6 +57,12 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
         data.attemptCount = attemptCount;
         data.isTutorialComplete = isTutorialComplete;
 
+        //single stats
+        data.singlePower = singlePower;
+        data.singleAccuracy = singleAccuracy;
+        data.singleBalance = singleBalance;
+        data.singleCritical = singleUnique;
+
         //finishes the writing and closes the file
         bf.Serialize(file, data);
         file.Close();
@@ -78,6 +83,12 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
             level = data.level;
             attemptCount = data.attemptCount;
             isTutorialComplete = data.isTutorialComplete;
+
+            //single stats
+            singlePower = data.singlePower;
+            singleAccuracy = data.singleAccuracy;
+            singleBalance = data.singleBalance;
+            singleUnique = data.singleCritical;
         }
     }
 
@@ -86,8 +97,8 @@ public class SaveManager : MonoBehaviour //pontially remove from unity and insta
         Debug.Log("clear accessed");
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
-            File.Delete(Application.persistentDataPath + "/playerInfo.dat"); //this should delete the save file
-            Debug.Log("clear performed"); //STILL NEEDS TO BE TESTED!!!!
+            File.Delete(Application.persistentDataPath + "/playerInfo.dat"); //this deletes the save file
+            Debug.Log("clear performed");
         }
     }
 }
@@ -103,6 +114,10 @@ class PlayerData
     public bool isTutorialComplete;
 
     //single style variables
+    public int singlePower;
+    public int singleAccuracy;
+    public int singleBalance;
+    public int singleCritical;
 
     //rapid style variables
 

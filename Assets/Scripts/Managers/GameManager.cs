@@ -49,29 +49,7 @@ public class GameManager : MonoBehaviour //MAKE A DEBUG MENU!!!!!!!!
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _UIManager.optionsActive(); //this just works lmfaooooo
+            _UIManager.optionsActive();
         }
-
-        //I have 6 buttons + mouse 1. Should I put this in an inputManager? (I don't think I will)
-        //switch (_gameState)
-        //{
-        //    case GameState.Titlescreen:
-        //        //run any settings/code relevent to the titlescreen
-        //        break;
-        //    case GameState.Gameplay: 
-        //        if (Input.GetKeyDown(KeyCode.Escape))
-        //        {
-        //            _UIManager.optionsActive(); //this probably doesn't work fully yet
-        //        }
-        //        break;
-        //    case GameState.Paused:
-        //        //this is for pause & potentially upgrade UIs?
-        //        break; 
-        //    case GameState.Other:
-        //        //no use yet, may be changed/removed
-        //        break;
-
-        //}
-
     }
 }

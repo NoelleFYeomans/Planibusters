@@ -96,9 +96,6 @@ public class UIManager : MonoBehaviour
 
     public void resultsUIActive()
     {
-        disableAllUI();
-
-        gameplayUIActive();
         resultsUI.gameObject.SetActive(true);
 
         Cursor.visible = true;
@@ -106,8 +103,6 @@ public class UIManager : MonoBehaviour
 
     public void creditsActive()
     {
-        disableAllUI();
-
         creditsUI.gameObject.SetActive(true);
 
         Cursor.visible = true;
@@ -115,8 +110,6 @@ public class UIManager : MonoBehaviour
 
     public void clearSaveActive()
     {
-        disableAllUI();
-
         clearSaveUI.gameObject.SetActive(true);
 
         Cursor.visible = true;
